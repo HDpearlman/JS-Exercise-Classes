@@ -113,13 +113,21 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
+  constructor(threeKeyObject){
+    this.name =threeKeyObject.name;
+    this.age = threeKeyObject.age;
+    this.location = threeKeyObject.location;
+  }
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}`
+  }
 
 }
 
 /*
   TASK 4
     - Write an Instructor class extending Lambdasian.
-    - Its constructor takes a single argument - an object with the following keys:
+   ✔ - Its constructor takes a single argument - an object with the following keys:
         + All the keys used to initialize instances of Lambdasian.
         + `specialty`: what the instance of Instructor is good at, i.e. 'redux'
         + `favLanguage`: i.e. 'JavaScript, Python, Elm etc.'
@@ -130,8 +138,19 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
+class Instructor extends Lambdasian {
+  constructor(instructorObject){
+  super(instructorObject);
+  this.specialty = instructorObject.specialty;
+  this.favLanguage =instructorObject.favLanguage;
+  this.catchPhrase=instructorObject.catchPhrase
+  }
+  demo(subject){
+    return `today we are learning about ${subject}`
+  }
+  grade(studentObject, subjectString){
+    return `${studentObject.name} receives a perfect score on ${subjectString}`
+  }
 }
 
 /*
@@ -143,13 +162,29 @@ class Instructor {
         + `className` i.e. CS132
         + `favSubjects`. i.e. an array of the student's favorite subjects ['HTML', 'CSS', 'JS']
     - The constructor calls the parent constructor passing to it what it needs.
-    - The constructor should also initialize `previousBackground`, `className` and `favSubjects` properties on the instance.
+    ✔- The constructor should also initialize `previousBackground`, `className` and `favSubjects` properties on the instance.
     - Student instances have the following methods:
         + `listSubjects` a method that returns all of the student's favSubjects in a single string: `Loving HTML, CSS, JS!`.
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
+class Student extends Lambdasian {
+  constructor(studentObject){
+    super(studentObject);
+    this.previousBackground = studentObject.previousBackground;
+    this.className = studentObject.className;
+    this.favSubjects = studentObject.favSubjects;
+
+  }
+  listSubjects(){
+    return `Loving ${this.favSubjects}!`
+  }
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`
+  }
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`
+  }
 
 }
 
