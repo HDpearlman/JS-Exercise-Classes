@@ -29,8 +29,8 @@ class Airplane {
 
 /*
   TASK 1
-    - Write a Person class whose constructor initializes `name` and `age` from arguments. 
-    - All instances of Person should also initialize with an empty `stomach` array.
+    - Write a Person class whose constructor initializes `name` and `age` from arguments. ✔
+    - All instances of Person should also initialize with an empty `stomach` array.  
     - Give instances of Person the ability to `.eat("someFood")`:
         + When eating an edible, it should be pushed into the `stomach`.
         + The `eat` method should have no effect if there are 10 items in the `stomach`.
@@ -62,11 +62,11 @@ class Person {
 
 /*
   TASK 2
-    - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
-    - All instances built with Car:
+  ✔  - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments. 
+   ✔ - All instances built with Car:
         + should initialize with a `tank` at 0
         + should initialize with an `odometer` at 0
-    - Give cars the ability to get fueled with a `.fill(gallons)` method. Add the gallons to `tank`.
+   ✔ - Give cars the ability to get fueled with a `.fill(gallons)` method. Add the gallons to `tank`.
     - Give cars ability to `.drive(distance)`. The distance driven:
         + Should cause the `odometer` to go up.
         + Should cause the the `tank` to go down taking `milesPerGallon` into account.
@@ -75,6 +75,28 @@ class Person {
 */
 
 class Car {
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons){
+    this.tank += gallons;
+  }
+  drive(distance){
+    if(distance < this.tank*this.milesPerGallon){
+    this.odometer +=distance  ;
+    this.tank -= distance/this.milesPerGallon;
+    }
+    else{
+      this.odometer += this.tank*this.milesPerGallon;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles`
+    }
+   
+  }
+
 
 }
 
